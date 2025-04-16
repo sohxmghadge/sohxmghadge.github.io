@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Profile Dashboard</title>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <style>
+    * {
+      margin: 0px;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    body {
+  background-image: url("/Users/sohamghadge/Desktop/profile dashboard/src/img10.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-attachment: fixed; 
+  animation: bodyEnter 1.5s ease-in-out forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+@keyframes bodyEnter {
+      0% {
+        opacity: 0;
+        filter: blur(10px);
+      }
+      50% {
+        opacity: 0.5;
+        filter: blur(5px);
+      }
+      100% {
+
+        opacity: 1;
+        filter: blur(0);
+      }
+    }
+    .sidebar {
+      position: fixed;
+      left: 0;
+      top: 0;
+      height: 100vh;
+      width: 220px;
+      background-color: var(--accent-color);
+      color: #fff;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 25px;
+      transform: translateX(-100%);
+      animation: slideIn 1.5s ease-in-out 2s forwards;
+      z-index: 10001;
+      margin-top: -100px;
+    }
+
+    .sidebar h2 {
+      font-size: 22px;
+      margin-bottom: 20px;
+    }
+
+    .sidebar a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      transition: color 0.3s ease;
+    }
+
+    .sidebar a:hover {
+      color: #d1d5ff;
+    }
+
+    @keyframes slideIn {
+      0% { transform: translateX(-100%); opacity: 0; }
+      100% { transform: translateX(0); opacity: 1; }
+    }
+
+    .clock {
+      position: fixed;
+      margin-top: -78px;
+      left: 600px;
+      padding: 15px 25px;
+      border-radius: 15px;
+      background: linear-gradient(145deg, #4f46e5, #6a5acd);
+      box-shadow: 0 0 15px rgba(0,0,0,0.4), inset 0 0 5px rgba(255,255,255,0.2);
+      color: #fff;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 28px;
+      letter-spacing: 3px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+      z-index: 10000;
+    }
+    .clock:hover{
+      transform: scale(1.05);
+      color: #a8aff2
+    }
+
+
+    .dashboard {
+      background: rgb(55, 27, 27);
+      width: 100%;
+      max-width: 1000px;
+      border-radius: 30px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      padding: 30px;
+      background-position: center;
+     margin: 220px ;
+     margin-top: 90px;
+     transition: transform 0.3s ease, box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(100px) scale(0.9) rotateX(90deg);
+      animation: crazyEnter 1s ease-out 0.8s forwards;
+      transition: all 0.5s ease;
+    }
+    .dashboard:hover {
+      transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  background-color: #424242;
+  transform: scale3d(1.20);
+    }
+
+    @keyframes crazyEnter {
+      0% {
+        opacity: 0;
+        transform: translateY(100px) scale(0.9) rotateX(90deg);
+      }
+      50% {
+        transform: translateY(-20px) scale(1.05) rotateX(-10deg);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0) scale(1) rotateX(0deg);
+      }
+    }
+   
+ .top-section {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      width: 1500px;
+      margin-top: 10px;
+    }
+
+    .profile-pic {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      object-fit: cover;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border: 4px solid #4f46e5;
+    }
+
+    .profile-pic:hover{
+        transform: scale(1.35);
+    }
+
+    .profile-info h2 {
+      font-size: 26px;
+      color: #fcf9f9;
+    }
+
+    .profile-info p {
+      color: #f7f4f4;
+      margin-top: 4px;
+    }
+
+
+    .about {
+      margin-top: 30px;
+    }
+
+    .about h3 {
+      color: #4f46e5;
+      margin-bottom: 10px;
+    }
+
+    .about p {
+      color: #ffffff;
+      line-height: 1.6;
+    }
+
+    .skills, .contact {
+      margin-top: 25px;
+    }
+
+    .skills h3, .contact h3 {
+      color: #4f46e5;
+      margin-bottom: 15px;
+    }
+
+    .skills ul {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      list-style: none;
+    }
+
+    .skills ul li {
+      background: #4f46e5;
+      color: rgb(255, 255, 255);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 14px;
+
+    }
+    .skills ul li:hover{
+      transform: scale(1.10);
+    }
+
+    .contact p {
+      color: #ffffff;
+      margin-bottom: 15px;
+    }
+  .certificates h3 {
+    color:#4f46e5;
+   text-decoration:blue;
+   margin-bottom: 10px;
+    }
+    .certificates p {
+        color:#fcf9f9;
+        margin: 6px 0;
+    }
+    
+        .certificates {
+  margin-top: 30px;
+}
+
+.certificates h3 {
+  color: #4f46e5;
+  margin-bottom: 15px;
+}
+
+.cert-block {
+  background: #1a1a1a;
+  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+  text-align: center;
+}
+
+.cert-block img {
+  max-width: 500%;
+  border-radius: 8px;
+  margin-bottom: 10px;
+}
+
+.cert-block a {
+  color: #bc3c3c;
+  text-decoration: underline;
+  font-size: 16px;
+}
+.certificate-img {
+  width: 250px;        
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.certificate-img:hover {
+  transform: scale(2.05) rotate(5deg);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+ .Linkedin h3 {
+  color: #4f46e5;
+  margin-top: 20px;
+  margin-bottom: 15px;
+}
+
+.Linkedin a {
+    color: #f7f4f4;
+  text-decoration: none;
+  margin-left: 1px;
+  margin-bottom: 15px;
+}
+.Tryhackme a {
+    color: #f7f4f4;
+  text-decoration: none;
+  margin-left: 1px;
+  margin-bottom: 15px;
+}
+.Tryhackme-img {
+    width: 850px;        
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin: 45px;
+  border-radius: 20px;
+}
+.Tryhackme-img:hover {
+  transform: scale(1.10);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+ @media (max-width: 600px) {
+      .top-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Menu</h2>
+        <a href="#My songs">My songs</a>
+        <a href="#Projects">Projects</a>
+        <a herf="#Uploads">Upload</a>
+        <p><a href="https://www.instagram.com/sohxmghadge?igsh=OGdhOGt1Njhwd28%3D&utm_source=qr" target="_blank">Instagram</a></p>
+    </div>
+    <div class="clock" id="clock"></div>
+     <div class="dashboard">
+    <div class="top-section">
+      <img src="/Users/sohamghadge/Desktop/profile dashboard/src/IMG_0626 3.jpg" alt="Profile Picture" class="profile-pic">
+      <div class="profile-info">
+        <h2>soham sachin ghadge</h2>
+        <p>Student | cybersec intern | learner</p>
+      </div>
+    </div>
+
+    <div class="about">
+      <h3>About Me</h3>
+      <p>Hey there! I’m an enthusiastic learner diving into the world of cybersecurity. From ethical hacking to network security, I’m passionate about understanding how systems work — and how to protect them. I’m currently sharpening my skills in areas like penetration testing, vulnerability assessment, and digital forensics. I believe in learning by doing, and I'm constantly exploring tools, labs, and certifications to level up my knowledge. My goal is to make the digital world a safer place, one step at a time.</p>
+    </div>
+
+    <div class="skills">
+      <h3>Skills</h3>
+      <ul>
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>Network basics</li>
+        <li>Cybersecurity</li>
+        <li>Ethical hacking </li>
+        <li>vulnerability assistment</li>
+      </ul>
+    </div>
+
+    <div class="contact">
+      <h3>Contact</h3>
+      <p>Email: sohamghadge12@email.com</p>
+    </div>
+        <div class="certificates">
+        <h3>Certificates</h3>
+       <div class=cert-block>
+    <img src="/Users/sohamghadge/Desktop/profile dashboard/src/ec7b044a-3368-4bc3-8eaf-1872a41780b2.png" class="certificate-img" alt="Certificate 1">
+    <p><a href="https://www.netacad.com/certificates?issuanceId=410a887c-dff1-444b-8c7f-ce2e0ad475c8" target="_blank">Networking Basics - Cisco</a></p>
+      </div>
+      <div class="cert-block">
+    <img src="/Users/sohamghadge/Desktop/profile dashboard/src/image.png" class="certificate-img" alt="Certificate 2">
+    <p><a href="https://www.credly.com/badges/6f952455-ef68-496f-9345-4a3d42469309/linked_in?t=ssn0e5" target="_blank">ICIP Badge - OPSWAT</a></p>
+</div>
+    <div class="cert-block">
+    <img src="/Users/sohamghadge/Desktop/profile dashboard/src/img3.png" class="certificate-img" alt="Certificate 3">
+    <p><a href="https://learn.opswatacademy.com/certificate/kePUvjb09w" target="_blank">Intro to Critical Infrastructure Protection - OPSWAT</a></p>
+</div>
+<div class="cert-block">
+    <img src="/Users/sohamghadge/Desktop/profile dashboard/src/img11.png" class="certificate-img" alt="Certificate 4">
+    <p><a href="https://olympus.mygreatlearning.com/courses/70951/modules/items/2220034?pb_id=581" target="_blank">Network Security - Great Learning Academy</a></p>
+</div>
+<div class="cert-block">
+    <img src="/Users/sohamghadge/Desktop/profile dashboard/src/cybrary-cert-offensive-security-operations_page-0001.jpg"class="certificate-img" alt="Certificate 4">
+    <p><a href="https://app.cybrary.it" target="_blank">Offensive Security operations - cybrary</a></p>
+</div>
+
+      <div class="Linkedin">
+        <h3>LinkedIn</h3>
+        <p><a href="https://www.linkedin.com/in/soham-ghadge-b97a11253/" target="_blank">Click to visit my LinkedIn Profile</a></p>
+      </div>
+      <div class="Tryhackme">
+        <h3>Tryhackme</h3>
+        <p><a href="https://tryhackme.com/p/imsoham" target="_blank">Click to visit my Tryhackme Profile</a></p>
+        <img src="/Users/sohamghadge/Desktop/profile dashboard/src/img12.jpg" class="Tryhackme-img" >
+         </div>
+  </div>
+  <audio id="dashboard-audio" src="/Users/sohamghadge/Desktop/profile dashboard/src/1744315372506lwjezn9c-voicemaker.in-speech.mp3" preload="auto">
+ </audio>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      console.log("Welcome to Soham's Profile Dashboard!");
+    });
+  </script>
+  <script>
+  
+  document.addEventListener('DOMContentLoaded', function () {
+    console.log("Welcome to Soham's Profile Dashboard!");
+
+    let audioPlayed = false;
+
+    function playAudioOnce() {
+      if (audioPlayed) return;
+      const audio = document.getElementById('dashboard-audio');
+      if (audio) audio.play();
+      audioPlayed = true;
+    }
+    document.body.addEventListener('click', playAudioOnce, { once: true });
+      setTimeout(() => {
+        const trophy = document.createElement('lottie-player');
+        trophy.setAttribute('src', 'https://assets9.lottiefiles.com/packages/lf20_touohxv0.json');
+        trophy.setAttribute('background', 'transparent');
+        trophy.setAttribute('speed', '1');
+        trophy.setAttribute('style', 'width: 250px; height: 250px; position: fixed; top: 20px; right: 20px; z-index: 9999;');
+        trophy.setAttribute('onetime', '');
+        trophy.setAttribute('autoplay', '');
+        document.body.appendChild(trophy);
+        const audio = document.getElementById('dashboard-audio');
+      if (audio) {
+        audio.volume = 1.0;
+        audio.play().catch(e => {
+          console.warn('Autoplay blocked:', e);
+        });
+      }
+    }, 1800); 
+  });
+  const clockEl = document.getElementById('clock');
+setInterval(() => {
+  const now = new Date();
+  clockEl.textContent = now.toLocaleTimeString();
+}, 1000);
+  </script>
+ </body>
+</html>
